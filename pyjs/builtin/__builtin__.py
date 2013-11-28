@@ -21522,7 +21522,11 @@ func(m$, null, g$, 'dir', 1, ['obj'], null, null, null, function($obj) {
     }
     return properties;
 });
+
 """)
+
+
+
 
 def filter(obj, method, sequence=None):
     # object context is LOST when a method is passed, hence object must be passed separately

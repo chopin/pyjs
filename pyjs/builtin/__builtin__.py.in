@@ -6788,7 +6788,11 @@ func(${0,module}$, null, ${0,g}$, 'dir', 1, ['obj'], null, null, null, function(
     }
     return properties;
 });
+
 """)
+
+
+
 
 def filter(obj, method, sequence=None):
     # object context is LOST when a method is passed, hence object must be passed separately

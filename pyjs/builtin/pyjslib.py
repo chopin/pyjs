@@ -6227,7 +6227,33 @@ def dir(obj):
     }
     return properties;
     """)
-
+#################
+#+chopin
+__builtin_vars__=['__doc__', '__module__', '__main__', '__dict__', '__is_instance__', '__name__', '__number__', '__md5__', '__mro__', '__super_classes__', '__sub_classes__', '__args__']
+def vars(obj):
+    variables=dict()
+    for name in dir(obj):
+        v=getattr(obj, name)
+        if name not in __builtin_vars__ and not callable(getattr(obj, name)):
+            variables[name]=v
+    return variables
+__id_current__=1
+def id(obj):
+    JS("""
+        if(typeof @{{obj}}=='object'){
+            if (@{{obj}}.__pyjs_object_id__){
+                return @{{obj}}.__pyjs_object_id__;
+            }else{
+                @{{obj}}.__pyjs_object_id__=@{{__id_current__}};
+                @{{__id_current__}}+=1;
+                return @{{obj}}.__pyjs_object_id__;
+            }
+        }else{
+            return @{{obj}}
+        }
+    """)
+#
+##################
 def filter(obj, method, sequence=None):
     # object context is LOST when a method is passed, hence object must be passed separately
     # to emulate python behaviour, should generate this code inline rather than as a function call

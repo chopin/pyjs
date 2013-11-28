@@ -263,6 +263,7 @@ PYJSLIB_BUILTIN_FUNCTIONS=frozenset((
     "hasattr",
     "hash",
     "hex",
+    "id",
     "isinstance",
     "issubclass",
     "iter",
@@ -286,6 +287,7 @@ PYJSLIB_BUILTIN_FUNCTIONS=frozenset((
     "sum",
     "super",
     "type",
+    "vars",
     "xrange",
     "zip",
 
