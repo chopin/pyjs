@@ -4811,6 +4811,11 @@ class dict:
             throw @{{ValueError}}("Value for key '" + @{{key}} + "' is undefined");
         }
         var sKey = (@{{key}}===null?null:(typeof @{{key}}['$H'] != 'undefined'?@{{key}}['$H']:((typeof @{{key}}=='string'||@{{key}}['__number__'])?'$'+@{{key}}:@{{__hash}}(@{{key}}))));
+        //+chopin
+        // When it is called from dict.update(), an empty dict causes an error. It is to prevent this case. 
+        if (typeof @{{self}}['__object']=='undefined'){
+            @{{self}}['__object']= $p['__empty_dict']();
+        }
         @{{self}}['__object'][sKey] = [@{{key}}, @{{value}}];
         """)
 
@@ -4823,9 +4828,9 @@ class dict:
         }
         return value[1];
         """)
-
-    def __hash__(self):
-        raise TypeError("dict objects are unhashable")
+    #-chopin
+    #def __hash__(self):
+    #    raise TypeError("dict objects are unhashable")
 
     def __nonzero__(self):
         JS("""
