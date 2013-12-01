@@ -224,7 +224,7 @@ class EventHandler(object):
         self._listeners[name].append(fn)
 
 class Browser(EventSink):
-    def __init__(self, application, appdir):
+    def __init__(self, application, appdir, x=CW_USEDEFAULT, y=CW_USEDEFAULT, width=CW_USEDEFAULT, height=CW_USEDEFAULT):
         EventSink.__init__(self)
         self.platform = 'mshtml'
         self.application = application
@@ -244,10 +244,10 @@ class Browser(EventSink):
                               WS_OVERLAPPEDWINDOW |
                               WS_VISIBLE |
                               WS_HSCROLL | WS_VSCROLL,
-                              CW_USEDEFAULT,
-                              CW_USEDEFAULT,
-                              CW_USEDEFAULT,
-                              CW_USEDEFAULT,
+                              x,          #CW_USEDEFAULT,
+                              y,          #CW_USEDEFAULT,
+                              width,    #CW_USEDEFAULT,
+                              height,   #CW_USEDEFAULT,
                               NULL,
                               NULL,
                               hInstance,
@@ -471,10 +471,17 @@ def run(one_event=False, block=True):
         sys.stderr.write( traceback.print_exc() )
         sys.stderr.flush()
 
-def setup(application, appdir=None, width=800, height=600):
-
+def setup(application, appdir=None, x=None, y=None, width=None, height=None):
     global wv
-    wv = Browser(application, appdir)
+    if x==None:
+        x=CW_USEDEFAULT
+    if y==None:
+        y=CW_USEDEFAULT
+    if width==None:
+        width=CW_USEDEFAULT
+    if height==None:
+        height=CW_USEDEFAULT
+    wv = Browser(application, appdir, x, y, width, height)
 
     wv.load_app()
 
