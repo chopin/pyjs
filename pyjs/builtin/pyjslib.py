@@ -1355,9 +1355,23 @@ String['prototype']['splitlines'] = function(keepends) {
     var items = this['$$split']("\\n");
     if (typeof keepends != 'undefined' && keepends)
     {
-        for (var i=0; i<items['__array']['length']; i++)
-        {
-            items['__array'][i] = items['__array'][i] + "\\n";
+        var len=items['__array']['length']
+        for (var i=0; i<items['__array']['length']-1; i++)
+        {   /* +chopin 
+             (when keepends==true)
+             'hello\n' -(split)-> ['hello', ''] -> ['hello\n', '\n'] (X)
+             'hello\n' -(split)-> ['hello', ''] -> ['hello\n']     (O)
+            */
+            s=items['__array'][i]
+            if (i<len-1)
+            {
+                items['__array'][i] = items['__array'][i] + "\\n";   
+            }
+            else if (items['__array'][i].length==0)// the last element is a null string
+            {
+                // the last one is a empty string, then erase it
+                items['__array'].pop()
+            }
         }
     }
     return items;
