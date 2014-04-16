@@ -1,0 +1,10 @@
+[console_scripts]
+pyv8run = pyjs.pyv8.pyv8run:main
+pyjampiler = pyjs.pyjampiler:pyjampiler
+java2py = pyjs.contrib.java2py:main
+mo2json = pyjs.contrib.mo2json:main
+pyjstest = pyjs.pyjstest:pyjstest
+pyjscompressor = pyjs.contrib.pyjscompressor:main
+pyjsbuild = pyjs.browser:build_script
+pyjscompile = pyjs.translator:main
+

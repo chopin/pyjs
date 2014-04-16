@@ -2834,6 +2834,7 @@ var %(e)s_name = (typeof %(e)s['__name__'] == 'undefined' ? %(e)s['name'] : %(e)
             if name_type is None:
                 jsname = self.closureSafe(self.scopeName(v.expr.name, depth, is_local))
             return [jsname, v.attrname, attr_name]
+            
         return [self.expr(v.expr, current_klass), v.attrname, attr_name]
 
     def _class(self, node, parent_class = None):

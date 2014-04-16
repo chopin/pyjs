@@ -16,7 +16,7 @@ def getCookie2(cookie_name):
     cookiestr = doc().cookie
     c = SimpleCookie(str(cookiestr))
     cs = c.get(cookie_name, None)
-    print "getCookie2", cookiestr, "name", cookie_name, "val", cs
+    #print "getCookie2", cookiestr, "name", cookie_name, "val", cs
     if cs:
         return cs.value
     return None
@@ -38,7 +38,7 @@ def setCookie(name, value, expires, domain=None, path=None, secure=False):
         m['secure'] = ''
 
     c = c.output(header='').strip()
-    print "set cookies", c
+    #print "set cookies", c
     _doc = doc()
     _doc.cookie = c
 
