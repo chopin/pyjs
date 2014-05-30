@@ -271,6 +271,7 @@ class Browser(EventSink):
                         interface=SHDocVw.DWebBrowserEvents2)
 
         #print "browser HWND", SetFocus(self.pBrowser.HWND)
+        self.closeHandlers=[]
 
     def _alert(self, txt):
         self.getDomWindow().alert(txt)
@@ -410,9 +411,15 @@ class Browser(EventSink):
         if self.appdir:
             pth = os.path.abspath(self.appdir)
         sys.path.append(pth)
-
+    def addCloseHandler(self, listener):
+        self.closeHandlers.append(listener)
+    def removeCloseHandler(self, listener):
+        self.closeHandlers.remove(listener)
     def on_unload_callback(self, *args):
+        for listener_func in self.closeHandlers:
+            listener_func()
         PostQuitMessage(0)
+
 
 global timer_q
 timer_q = []
@@ -489,4 +496,4 @@ def setup(application, appdir=None, x=None, y=None, width=None, height=None):
         if is_loaded():
             return
         run(one_event=True)
-
+    return wv

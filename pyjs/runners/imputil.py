@@ -139,7 +139,8 @@ class ImportManager:
 
         importer = top_module.__dict__.get('__importer__')
         if importer:
-            return importer._finish_import(top_module, parts[1:], fromlist)
+            module=importer._finish_import(top_module, parts[1:], fromlist)
+            return module
 
         # Grrr, some people "import os.path" or do "from os.path import ..."
         if len(parts) == 2 and hasattr(top_module, parts[1]):

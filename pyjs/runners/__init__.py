@@ -63,9 +63,10 @@ class RunnerManager(object):
         self._listeners.append(listener)
 
     def setup(self, *args, **kwds):
-        self._runner.setup(*args, **kwds)
+        browser=self._runner.setup(*args, **kwds)
         for listener in self._listeners:
             listener()
+        return browser
 
     def run(self, *args, **kwds):
         self._runner.run(*args, **kwds)

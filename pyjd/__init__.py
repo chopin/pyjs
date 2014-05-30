@@ -3,8 +3,11 @@ import os
 
 import pyjswidgets
 import pyjswaddons
-sys.path += [os.path.dirname(pyjswidgets.__file__),
-             os.path.dirname(pyjswaddons.__file__), ]
+path2add_list=[os.path.dirname(pyjswidgets.__file__),
+               os.path.dirname(pyjswaddons.__file__) ]
+for p in path2add_list:
+    if p not in sys.path:
+        sys.path.append(p)
 from pyjs.runners import RunnerManager
 
 #TODO: very ugly to self-import and setattr(self) ... remove ASAP!

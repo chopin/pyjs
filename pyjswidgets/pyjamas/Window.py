@@ -10,6 +10,7 @@ resizeListeners = []
 
 from __pyjamas__ import JS, doc, wnd, get_main_frame
 from pyjamas import Location
+import pyjd
 
 def init_listeners():
     pass
