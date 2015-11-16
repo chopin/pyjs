@@ -1,4 +1,4 @@
-pyjswidgets
 pgen
 pyjs
 pyjswaddons
+pyjswidgets

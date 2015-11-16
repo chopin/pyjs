@@ -11,10 +11,14 @@ class PopupPanel:
 
         @{{popup}}['__frame'] = frame;
         frame['__popup'] = @{{popup}};
-        frame['style']['setExpression']('left', "this['__popup']['offsetLeft']");
-        frame['style']['setExpression']('top', "this['__popup']['offsetTop']");
-        frame['style']['setExpression']('width', "this['__popup']['offsetWidth']");
-        frame['style']['setExpression']('height', "this['__popup']['offsetHeight']");
+        // setExpression not supported after IE8 (https://github.com/pyjs/pyjs/issues/249)
+        if (typeof frame.style.setExpression != 'undefined')
+        {
+            frame['style']['setExpression']('left', "this['__popup']['offsetLeft']");
+            frame['style']['setExpression']('top', "this['__popup']['offsetTop']");
+            frame['style']['setExpression']('width', "this['__popup']['offsetWidth']");
+            frame['style']['setExpression']('height', "this['__popup']['offsetHeight']");
+        }
         @{{popup}}['parentElement']['insertBefore'](frame, @{{popup}});
         """)
 

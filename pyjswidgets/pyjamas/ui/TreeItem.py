@@ -94,9 +94,10 @@ class TreeItem(UIObject):
         if html is not None:
             try:
                 # messy. pyjd can do unicode, pyjs can't
-                if isinstance(html, unicode):
-                    ka['HTML'] = html
-                elif isinstance(html, basestring):
+                #if isinstance(html, unicode):
+                #    ka['HTML'] = html
+                #el
+                if isinstance(html, basestring):
                     ka['HTML'] = html
                 else:
                     ka['Widget'] = html
